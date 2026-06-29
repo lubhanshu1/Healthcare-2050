@@ -44,7 +44,7 @@ export default function Home() {
   // UI State
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
-  // Quantum Engine State (Kept for the AGI toggle)
+  // Quantum Engine State
   const [isAgiActive, setIsAgiActive] = useState(false);
 
   const handleCloseModal = () => {
@@ -118,9 +118,12 @@ export default function Home() {
 
     const particleCount = 4500;
     const geometry = new THREE.BufferGeometry();
-    const positions = [];
-    const originalPositions = [];
-    const colors = [];
+
+    // TYPE FIXES ADDED HERE:
+    const positions: number[] = [];
+    const originalPositions: number[] = [];
+    const colors: number[] = [];
+
     const color1 = new THREE.Color(0x00e5ff);
     const color2 = new THREE.Color(0xb400ff);
 
@@ -162,14 +165,14 @@ export default function Home() {
       particles.rotation.x += (mouseY * 0.05 - particles.rotation.x) * 0.05;
       particles.rotation.y += (mouseX * 0.05 - particles.rotation.y) * 0.05;
       particles.rotation.y += 0.003;
-      const positions = particles.geometry.attributes.position.array as Float32Array;
+      const positionsArray = particles.geometry.attributes.position.array as Float32Array;
       for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3;
         const origX = originalPositions[i3];
         const origY = originalPositions[i3 + 1];
         const origZ = originalPositions[i3 + 2];
-        positions[i3] = origX + Math.sin(time + origY * 0.02) * 6;
-        positions[i3 + 2] = origZ + Math.cos(time + origY * 0.02) * 6;
+        positionsArray[i3] = origX + Math.sin(time + origY * 0.02) * 6;
+        positionsArray[i3 + 2] = origZ + Math.cos(time + origY * 0.02) * 6;
       }
       particles.geometry.attributes.position.needsUpdate = true;
       renderer.render(scene, camera);
@@ -241,7 +244,6 @@ export default function Home() {
       {activeModal && (
         <div onClick={handleCloseModal} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(10px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-          {/* INCREASED MAX-WIDTH TO 950px TO ACCOMMODATE THE NEW COMPONENTS */}
           <div onClick={(e) => e.stopPropagation()} style={{ background: '#0a0a0f', border: '1px solid rgba(255,255,255,0.1)', padding: '40px', width: '100%', maxWidth: '950px', borderRadius: '8px', position: 'relative' }}>
             <button onClick={handleCloseModal} style={{ position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none', color: 'gray', fontSize: '1.5rem', cursor: 'pointer' }}>&times;</button>
             <h3 style={{ fontSize: "2rem", fontWeight: 300, marginBottom: "2rem", color: "#fff", letterSpacing: "-0.02em" }}>
