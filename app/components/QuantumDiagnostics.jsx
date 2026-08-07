@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import QMLScannerForm from "./QMLScannerForm";
 
 const QuantumDiagnostics = () => {
     // Core Scanning States
@@ -181,6 +182,9 @@ const QuantumDiagnostics = () => {
                     </div>
                 </div>
             </div>
+
+            {/* NEW: Health Comparison Engine Form (QML) */}
+            <QMLScannerForm />
 
             {/* Upper Layout Section */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px', marginBottom: '20px' }}>

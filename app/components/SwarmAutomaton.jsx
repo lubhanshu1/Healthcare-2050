@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import SwarmScannerForm from "./SwarmScannerForm";
 
 const SwarmAutomaton = () => {
     const canvasRef = useRef(null);
@@ -105,6 +106,9 @@ const SwarmAutomaton = () => {
                     <div style={{ color: '#14b8a6' }}>NANOBOTS: {metrics.nanobots}</div>
                 </div>
             </div>
+
+            {/* SYMPTOM TRIAGE FORM INJECTED HERE */}
+            <SwarmScannerForm />
 
             <div style={{ backgroundColor: '#000', border: '1px solid #1f2937', borderRadius: '8px', overflow: 'hidden', marginBottom: '20px' }}>
                 <canvas ref={canvasRef} width={850} height={250} style={{ display: 'block', width: '100%', backgroundColor: '#050508' }} />

@@ -1,0 +1,21 @@
+{
+    "source": "CDC/WHO Adult BMI Classification",
+    "data": [
+        {
+            "max": 18.5,
+            "classification": "Underweight relative to reference range"
+        },
+        {
+            "max": 24.9,
+            "classification": "Within normal reference range"
+        },
+        {
+            "max": 29.9,
+            "classification": "Elevated relative to reference range (Overweight)"
+        },
+        {
+            "max": 1000,
+            "classification": "Significantly elevated relative to reference range (Obese)"
+        }
+    ]
+}

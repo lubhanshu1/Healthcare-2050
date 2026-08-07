@@ -1,5 +1,5 @@
 "use client";
-
+import BiometricScannerForm from "@/app/components/BiometricScannerForm";
 import React, { useState, useEffect, useRef } from 'react';
 
 const NODE_DATA = {

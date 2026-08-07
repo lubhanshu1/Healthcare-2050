@@ -1,0 +1,30 @@
+{
+    "source": "AHA Blood Pressure Category Guidance",
+    "data": [
+        {
+            "sysMax": 120,
+            "diaMax": 80,
+            "classification": "Normal reference range"
+        },
+        {
+            "sysMax": 129,
+            "diaMax": 80,
+            "classification": "Elevated reference range"
+        },
+        {
+            "sysMax": 139,
+            "diaMax": 89,
+            "classification": "Stage 1 elevated reference range"
+        },
+        {
+            "sysMax": 180,
+            "diaMax": 120,
+            "classification": "Stage 2 elevated reference range"
+        },
+        {
+            "sysMax": 500,
+            "diaMax": 500,
+            "classification": "Crisis indicator - seek prompt care"
+        }
+    ]
+}

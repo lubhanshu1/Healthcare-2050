@@ -1,0 +1,8 @@
+{
+    "source": "CDC Public Guidance - General Severity",
+    "data": {
+        "low": "Monitor at home. Ensure hydration and rest.",
+        "medium": "Consider consulting a clinician if symptoms persist.",
+        "high": "Seek prompt care. Marker indicates elevated severity."
+    }
+}

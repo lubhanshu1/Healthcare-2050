@@ -1,0 +1,10 @@
+{
+    "source": "WHO Global Health Observatory (Illustrative)",
+    "data": {
+        "smoker_penalty": -10,
+        "exercise_bonus_1_2": 2,
+        "exercise_bonus_3_plus": 5,
+        "family_history_penalty": -3,
+        "base_baseline": 80
+    }
+}
