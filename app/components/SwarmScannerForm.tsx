@@ -1,98 +1,57 @@
 "use client";
-import { useState, useEffect } from "react";
-import HealthComparisonDisclaimer from "./HealthComparisonDisclaimer";
+import { useHealthSession } from "@/lib/useHealthSession";
 
 export default function SwarmScannerForm() {
-    const [showForm, setShowForm] = useState(false);
-    const [results, setResults] = useState<any>(null);
+    const { data, setMetric } = useHealthSession();
 
-    useEffect(() => {
-        const saved = localStorage.getItem("swarm-scan");
-        if (saved) setResults(JSON.parse(saved));
-    }, []);
-
-    const handleScan = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const symptom = formData.get("symptom") as string;
-        const duration = Number(formData.get("duration"));
-        const pain = Number(formData.get("pain"));
-
-        // Micro-engine to calculate severity based on your reference data parameters
-        let classification = "UNKNOWN ANOMALY";
-        let protocol = "General observation recommended.";
-        let severityClass = "text-gray-400";
-
-        if (pain >= 8 || duration > 14) {
-            classification = "CRITICAL SEVERITY";
-            protocol = "Immediate Nanobot Swarm Deployment (Class A)";
-            severityClass = "text-red-500";
-        } else if (pain >= 5 || duration > 7) {
-            classification = "MODERATE SEVERITY";
-            protocol = "Targeted Micro-dosing Swarm (Class B)";
-            severityClass = "text-yellow-400";
-        } else {
-            classification = "LOW SEVERITY";
-            protocol = "Preventative Maintenance Swarm (Class C)";
-            severityClass = "text-green-400";
-        }
-
-        const res = { symptom: symptom.toUpperCase(), classification, protocol, severityClass };
-        setResults(res);
-        localStorage.setItem("swarm-scan", JSON.stringify(res));
-        setShowForm(false);
-    };
-
-    const clearData = () => {
-        localStorage.removeItem("swarm-scan");
-        setResults(null);
+    const handleSelect = (status: "never" | "former" | "current") => {
+        setMetric("smokingStatus", status);
     };
 
     return (
-        <div className="font-mono text-cyan-400 my-6">
-            {!showForm && !results && (
-                <button onClick={() => setShowForm(true)} className="border border-cyan-400 px-4 py-2 hover:bg-cyan-900/50 transition-colors">
-                    [ INITIALIZE SYMPTOM TRIAGE ]
-                </button>
-            )}
+        <div className="border border-cyan-900/40 rounded-xl p-6 bg-[#030305]/80 font-mono w-full">
+            <h3 className="text-cyan-400 text-sm tracking-widest uppercase mb-4">Defense Readiness Vector</h3>
+            <label className="block text-[10px] uppercase text-gray-500 mb-4 tracking-widest">Behavioral Input: Smoking Status</label>
 
-            {showForm && (
-                <form onSubmit={handleScan} className="border border-cyan-500/50 p-4 max-w-md bg-black">
-                    <div className="flex flex-col gap-4 text-sm">
-                        <div>
-                            <label className="text-cyan-600 text-xs">PRIMARY SYMPTOM</label>
-                            <input name="symptom" type="text" placeholder="e.g., Chest Pain, Migraine" required className="w-full bg-transparent border-b border-cyan-500 outline-none p-1 mt-1 text-white" />
-                        </div>
+            <div className="grid grid-cols-3 gap-3 mb-6">
+                {(["never", "former", "current"] as const).map((status) => (
+                    <button
+                        key={status}
+                        onClick={() => handleSelect(status)}
+                        className={`border rounded p-2 text-[10px] uppercase tracking-widest transition-all ${data.smokingStatus === status
+                            ? "border-cyan-400 bg-cyan-900/20 text-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.1)]"
+                            : "border-cyan-900/30 bg-black/40 text-gray-500 hover:border-cyan-700/80 hover:text-gray-300"
+                            }`}
+                    >
+                        {status}
+                    </button>
+                ))}
+            </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="text-cyan-600 text-xs">DURATION (DAYS)</label>
-                                <input name="duration" type="number" placeholder="Days" required className="w-full bg-transparent border-b border-cyan-500 outline-none p-1 mt-1 text-white" />
-                            </div>
-                            <div>
-                                <label className="text-cyan-600 text-xs">PAIN LEVEL (1-10)</label>
-                                <input name="pain" type="number" min="1" max="10" placeholder="1-10" required className="w-full bg-transparent border-b border-cyan-500 outline-none p-1 mt-1 text-white" />
-                            </div>
-                        </div>
+            <div className="min-h-[80px]">
+                {data.smokingStatus === "current" && (
+                    <div className="border border-gray-700/50 p-4 rounded text-xs text-cyan-200 bg-black/40 leading-relaxed">
+                        Smoking is one of the most modifiable risk factors for cardiovascular and respiratory disease — risk drops measurably within years of quitting, at any age.
+                        <span className="block text-[9px] text-gray-500 mt-3 uppercase tracking-widest">Source: WHO</span>
                     </div>
-                    <div className="mt-6 flex gap-4">
-                        <button type="submit" className="text-cyan-300 hover:text-white border border-cyan-300 px-2 py-1">[ ANALYZE ]</button>
-                        <button type="button" onClick={() => setShowForm(false)} className="text-gray-500 hover:text-white border border-gray-500 px-2 py-1">[ CANCEL ]</button>
+                )}
+                {data.smokingStatus === "former" && (
+                    <div className="border border-gray-700/50 p-4 rounded text-xs text-cyan-200 bg-black/40 leading-relaxed">
+                        Acknowledging sustained cessation benefits — physiological recovery metrics trend positively post-cessation.
+                        <span className="block text-[9px] text-gray-500 mt-3 uppercase tracking-widest">Source: WHO</span>
                     </div>
-                </form>
-            )}
+                )}
+                {data.smokingStatus === "never" && (
+                    <div className="border border-gray-700/50 p-4 rounded text-xs text-cyan-200 bg-black/40 leading-relaxed">
+                        Baseline respiratory trajectory aligns with optimal non-smoker clinical reference datasets.
+                        <span className="block text-[9px] text-gray-500 mt-3 uppercase tracking-widest">Source: WHO</span>
+                    </div>
+                )}
+            </div>
 
-            {results && (
-                <div className="border border-cyan-400 p-4 relative bg-black/80 max-w-md">
-                    <button onClick={clearData} className="absolute top-2 right-2 text-xs text-red-400 hover:text-red-300">[ CLEAR DATA ]</button>
-                    <h3 className="text-lg mb-2 text-cyan-300">SWARM PROTOCOL GENERATED</h3>
-                    <p className="text-sm text-gray-400 mb-1">TARGET: {results.symptom}</p>
-                    <p className={`text-xl font-bold mb-2 ${results.severityClass}`}>{results.classification}</p>
-                    <p className="text-sm text-white mb-2">&gt; {results.protocol}</p>
-
-                    <HealthComparisonDisclaimer />
-                </div>
-            )}
+            <p className="text-[9px] text-gray-600 mt-6 uppercase tracking-widest leading-relaxed">
+                [SYSTEM NOTE]: Educational simulation against public reference data — not medical advice.
+            </p>
         </div>
     );
 }

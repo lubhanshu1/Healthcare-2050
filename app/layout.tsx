@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { HealthSessionProvider } from "@/lib/useHealthSession"; // <-- 1. Import the provider
 
 export const metadata: Metadata = {
   title: "Healthcare Civilization 2050",
@@ -18,7 +19,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body>
+        {/* 2. Wrap children in the provider */}
+        <HealthSessionProvider>
+          {children}
+        </HealthSessionProvider>
+      </body>
     </html>
   );
 }

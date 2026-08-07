@@ -1,6 +1,10 @@
 "use client";
-import BiometricScannerForm from "@/app/components/BiometricScannerForm";
 import React, { useState, useEffect, useRef } from 'react';
+import { CloneTransferProtocol } from "@/app/components/CloneTransferProtocol";
+import QMLScannerForm from "@/app/components/QMLScannerForm";
+// Note: If you kept the file name as BiometricScannerForm.tsx, change the path below to match it!
+import { BiometricTwinScans } from "@/app/components/BiometricScannerForm";
+import SwarmScannerForm from "@/app/components/SwarmScannerForm";
 
 const NODE_DATA = {
     earth: { name: "Earth Mega-City Hub", status: "PRIMARY", telemetry: "Terrestrial fiber grids operational. Quantum relays synchronized.", module: "MATRIX", actionText: "INITIALIZE 5-SCALE MATRIX" },
@@ -176,6 +180,20 @@ export default function CivilizationCore() {
                             </div>
                             <div className="data-panel">
                                 <h3 style={{ margin: '0 0 15px 0', color: '#5eead4', textTransform: 'uppercase' }}>{activeTwin} PARAMETERS</h3>
+
+                                {activeTwin === 'biological' && (
+                                    <div style={{ marginBottom: '20px' }}>
+                                        <BiometricTwinScans />
+                                        <CloneTransferProtocol />
+                                    </div>
+                                )}
+
+                                {activeTwin === 'behavioral' && (
+                                    <div style={{ marginBottom: '20px' }}>
+                                        <SwarmScannerForm />
+                                    </div>
+                                )}
+
                                 <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #1f2937', paddingBottom: '10px', marginBottom: '10px' }}>
                                     <span style={{ color: '#9ca3af' }}>Systemic Integrity / Coherence</span>
                                     <span style={{ color: metrics.primary > 95 ? '#4ade80' : '#facc15' }}>{metrics.primary.toFixed(2)}%</span>
@@ -246,6 +264,13 @@ export default function CivilizationCore() {
                                     {Number(qmlAdvantage) > 0 ? `QUANTUM ADVANTAGE ACHIEVED: +${qmlAdvantage}% FASTER` : 'CLASSICAL SYSTEMS CURRENTLY OPTIMAL'}
                                 </div>
                             </div>
+
+                            {/* Injected QML Diagnostics Form */}
+                            <div style={{ borderTop: '1px solid #1f2937', paddingTop: '20px', marginTop: '30px' }}>
+                                <h2 style={{ color: '#5eead4', textTransform: 'uppercase', marginBottom: '15px', fontSize: '1rem' }}>Personal Vitals Diagnostics</h2>
+                                <QMLScannerForm />
+                            </div>
+
                         </div>
                         <button onClick={() => setAppStage('VISUALIZER')} className="sys-btn sys-btn-alt">Return to Network</button>
                     </div>

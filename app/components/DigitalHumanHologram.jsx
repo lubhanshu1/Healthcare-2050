@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import BiometricScannerForm from "./BiometricScannerForm";
+import { BiometricTwinScans } from "./BiometricScannerForm";
 
 const DigitalHumanHologram = () => {
     const [telomere, setTelomere] = useState(20);
@@ -41,7 +41,7 @@ const DigitalHumanHologram = () => {
             </div>
 
             {/* Health Comparison Engine Form */}
-            <BiometricScannerForm />
+            <BiometricTwinScans />
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
 
