@@ -1,6 +1,7 @@
 "use client";
 import QuantumDiagnostics from './components/QuantumDiagnostics';
 import DigitalHumanHologram from './components/DigitalHumanHologram';
+import Link from 'next/link';
 import SystemArchitectID from './components/SystemArchitectID';
 import SwarmAutomaton from './components/SwarmAutomaton';
 import FederatedTopology from './components/FederatedTopology';
@@ -119,7 +120,6 @@ export default function Home() {
     const particleCount = 4500;
     const geometry = new THREE.BufferGeometry();
 
-    // TYPE FIXES ADDED HERE:
     const positions: number[] = [];
     const originalPositions: number[] = [];
     const colors: number[] = [];
@@ -201,20 +201,22 @@ export default function Home() {
       {/* 3D Canvas Background */}
       <div style={{ position: 'absolute', top: 0, left: 0, zIndex: 0 }} ref={mountRef}></div>
 
-      {/* MATRIX ROUTER BUTTON */}
-      <button
-        onClick={() => { initAudio(); playTone(1200, 'sine', 0.2); router.push('/matrix'); }}
+      {/* MATRIX ROUTER BUTTON (UPDATED TO INSTANT <LINK>) */}
+      <Link
+        href="/matrix"
+        onClick={() => { initAudio(); playTone(1200, 'sine', 0.2); }}
         style={{
           position: 'absolute', bottom: '40px', right: '40px', zIndex: 100, padding: '12px 24px',
           background: 'rgba(3, 7, 18, 0.8)', border: '1px solid #14b8a6', color: '#14b8a6',
           cursor: 'pointer', fontFamily: '"Courier New", monospace', fontSize: '0.85rem',
-          letterSpacing: '2px', textTransform: 'uppercase', boxShadow: '0 0 15px rgba(20, 184, 166, 0.2)', transition: 'all 0.3s ease'
+          letterSpacing: '2px', textTransform: 'uppercase', boxShadow: '0 0 15px rgba(20, 184, 166, 0.2)',
+          transition: 'all 0.3s ease', textDecoration: 'none', display: 'inline-block'
         }}
         onMouseEnter={(e) => { e.currentTarget.style.background = '#14b8a6'; e.currentTarget.style.color = '#000'; }}
         onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(3, 7, 18, 0.8)'; e.currentTarget.style.color = '#14b8a6'; }}
       >
         [ Access Secure Matrix ]
-      </button>
+      </Link>
 
       {/* TOP NAVIGATION */}
       <div style={{ position: 'relative', zIndex: 10, padding: '40px 60px', display: 'flex', justifyContent: 'space-between' }}>
