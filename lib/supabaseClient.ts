@@ -1,6 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
+import { createClient } from '@supabase/supabase-js';
 
+// --- SUPABASE CLIENT INITIALIZATION ---
+// This grabs the keys from your .env.local file. If they aren't there yet, 
+// it safely falls back to placeholders so your Vercel build won't crash.
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key';
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// --------------------------------------
 
 export interface HealthData {
     height?: number;
