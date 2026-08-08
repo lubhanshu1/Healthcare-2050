@@ -201,7 +201,7 @@ export default function Home() {
       {/* 3D Canvas Background */}
       <div style={{ position: 'absolute', top: 0, left: 0, zIndex: 0 }} ref={mountRef}></div>
 
-      {/* MATRIX ROUTER BUTTON (UPDATED TO INSTANT <LINK>) */}
+      {/* MATRIX ROUTER BUTTON */}
       <Link
         href="/matrix"
         onClick={() => { initAudio(); playTone(1200, 'sine', 0.2); }}
