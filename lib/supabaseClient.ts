@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { supabase } from "./supabaseClient";
+
 
 export interface HealthData {
     height?: number;
