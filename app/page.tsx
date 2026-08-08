@@ -5,6 +5,9 @@ import Link from 'next/link';
 import SystemArchitectID from './components/SystemArchitectID';
 import SwarmAutomaton from './components/SwarmAutomaton';
 import FederatedTopology from './components/FederatedTopology';
+import PatientFollowUp from './components/PatientFollowUp';
+import RoleFilteredRecords from './components/RoleFilteredRecords';
+import PatientSummaryReport from './components/PatientSummaryReport';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
@@ -29,10 +32,14 @@ const playTone = (freq: number, type: OscillatorType, duration: number, vol = 0.
   osc.stop(audioCtx.currentTime + duration);
 };
 
+// --- NAVIGATION LABELS ---
 const navLabels: Record<string, string> = {
   quantumTwins: "Digital Humans",
   agiPhysicians: "QML Diagnostics",
   nanobotSwarms: "Swarm Medicine",
+  clinicalTriage: "Clinical Triage",
+  roleAccess: "Role Access",
+  patientReport: "Patient Report",
   infrastructure: "Infrastructure",
   publications: "Publications",
   connect: "System Architect",
@@ -55,6 +62,7 @@ export default function Home() {
     }, 500);
   };
 
+  // --- CONTENT DATABASE ---
   const contentDatabase: Record<string, { title: string; body: React.ReactNode }> = {
     quantumTwins: {
       title: "Digital Humans",
@@ -77,6 +85,18 @@ export default function Home() {
     nanobotSwarms: {
       title: "Swarm Medicine",
       body: <SwarmAutomaton />,
+    },
+    clinicalTriage: {
+      title: "Clinical Triage & Patient Follow-up",
+      body: <PatientFollowUp />,
+    },
+    roleAccess: {
+      title: "Role-Aware Health Records & Clearance",
+      body: <RoleFilteredRecords />,
+    },
+    patientReport: {
+      title: "Automated Patient Summary & Report Export",
+      body: <PatientSummaryReport />,
     },
     infrastructure: {
       title: "Edge Telemetry & Cloud Security",
@@ -218,11 +238,28 @@ export default function Home() {
         [ Access Secure Matrix ]
       </Link>
 
-      {/* TOP NAVIGATION */}
-      <div style={{ position: 'relative', zIndex: 10, padding: '40px 60px', display: 'flex', justifyContent: 'space-between' }}>
-        <nav style={{ display: 'flex', gap: '40px', width: '100%', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '20px' }}>
+      {/* TOP NAVIGATION - FIXED ALIGNMENT & WRAPPING */}
+      <div style={{ position: 'relative', zIndex: 10, padding: '40px 60px', display: 'flex', justifyContent: 'center' }}>
+        <nav style={{ display: 'flex', flexWrap: 'wrap', gap: '16px 28px', width: '100%', maxWidth: '1400px', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '20px' }}>
           {Object.keys(navLabels).map((key) => (
-            <button key={key} onClick={() => { initAudio(); playTone(500, 'sine', 0.1); setActiveModal(key); }} style={{ background: 'none', border: 'none', color: 'gray', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.8rem', cursor: 'pointer', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = 'white'} onMouseLeave={(e) => e.currentTarget.style.color = 'gray'}>
+            <button
+              key={key}
+              onClick={() => { initAudio(); playTone(500, 'sine', 0.1); setActiveModal(key); }}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'gray',
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                fontSize: '0.75rem',
+                cursor: 'pointer',
+                transition: 'color 0.3s',
+                whiteSpace: 'nowrap',
+                padding: '4px 8px'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'gray'}
+            >
               {navLabels[key]}
             </button>
           ))}
