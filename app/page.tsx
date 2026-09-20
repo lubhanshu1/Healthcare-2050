@@ -8,6 +8,7 @@ import FederatedTopology from './components/FederatedTopology';
 import PatientFollowUp from './components/PatientFollowUp';
 import RoleFilteredRecords from './components/RoleFilteredRecords';
 import PatientSummaryReport from './components/PatientSummaryReport';
+import CausalCareSandbox from './components/CausalCareSandbox';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
@@ -40,6 +41,7 @@ const navLabels: Record<string, string> = {
   clinicalTriage: "Clinical Triage",
   roleAccess: "Role Access",
   patientReport: "Patient Report",
+  causalSandbox: "Causal Care",
   infrastructure: "Infrastructure",
   publications: "Publications",
   connect: "System Architect",
@@ -98,6 +100,10 @@ export default function Home() {
       title: "Automated Patient Summary & Report Export",
       body: <PatientSummaryReport />,
     },
+    causalSandbox: {
+      title: "Causal Care Sandbox",
+      body: <CausalCareSandbox />,
+    },
     infrastructure: {
       title: "Edge Telemetry & Cloud Security",
       body: <FederatedTopology />,
@@ -113,7 +119,7 @@ export default function Home() {
           </div>
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", margin: "3rem 0" }}></div>
           <div>
-            <h4 style={{ color: "#fff", fontSize: "1.2rem", marginBottom: "1rem", fontWeight: 400 }}>Inclusion–Exclusion Principle</h4>
+            <h4 style={{ color: "#fff", fontSize: "1.2rem", marginBottom: "1rem", fontWeight: 400 }}>Inclusionâ€“Exclusion Principle</h4>
             <p style={{ fontSize: "0.95rem", color: "gray", lineHeight: 1.7, fontWeight: 300, marginBottom: "1rem" }}>An in-depth exploration of advanced discrete mathematics applied directly to modern network security architectures and identity routing.</p>
             <a href="/inclusion-exclusion-report.pdf" target="_blank" style={{ padding: "10px 20px", border: "1px solid #14b8a6", color: "#14b8a6", textDecoration: "none", display: "inline-block", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "1px" }}>Download Report</a>
           </div>
@@ -295,3 +301,4 @@ export default function Home() {
     </main>
   );
 }
+
