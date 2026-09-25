@@ -48,9 +48,9 @@ export function CardiacScan() {
         }
         setValidationError(null);
 
-        // 3. HIGH-RISK FLAG RULES (Automated Dosing System Safety Warning)
+        // 3. HIGH-RISK REFERENCE FLAG
         if (s >= 180 || d >= 120) {
-            setHighRiskFlag("CRITICAL RISK: Hypertensive Crisis. AUTOMATED DOSING SYSTEM locked. Manual physician override required.");
+            setHighRiskFlag("HIGH-RISK REFERENCE FLAG: blood-pressure values are in a range that warrants prompt professional assessment. No automated dosing or treatment is performed.");
         } else {
             setHighRiskFlag(null);
         }
@@ -196,7 +196,7 @@ export default function QMLScannerForm() {
             <CardiacScan />
             <LipidScan />
             <p className="text-[9px] text-gray-600 mt-2 uppercase tracking-widest leading-relaxed">
-                [SYSTEM NOTE]: Educational simulation against public reference data. Automated Dosing Protocols strictly monitored.
+                [SYSTEM NOTE]: Educational screening demonstration using public reference ranges. No automated dosing or treatment is performed.
             </p>
         </div>
     );
