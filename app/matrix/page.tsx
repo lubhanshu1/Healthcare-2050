@@ -22,7 +22,7 @@ export default function CivilizationCore() {
     const [activeTwin, setActiveTwin] = useState('biological');
     const [metrics, setMetrics] = useState({ primary: 98.4, secondary: 42.1 });
     const [cmdInput, setCmdInput] = useState('');
-    const [terminalLogs, setTerminalLogs] = useState(["[SYSTEM]: GPT-X Core initialized. Ready for prompt..."]);
+    const [terminalLogs, setTerminalLogs] = useState(["[SYSTEM]: Demo command core initialized. Ready for prompt..."]);
     const logEndRef = useRef<HTMLDivElement>(null);
 
     // QML State (Interactive Math Params)
@@ -63,8 +63,8 @@ export default function CivilizationCore() {
         const currentCmd = cmdInput.toLowerCase();
         setCmdInput('');
         setTimeout(() => {
-            let response = "[GPT-X]: Command unacknowledged. Check syntax.";
-            if (currentCmd.includes('analyze') || currentCmd.includes('scan')) response = `[GPT-X]: Analyzing ${activeTwin} variables... No critical anomalies detected.`;
+            let response = "[DEMO CORE]: Command not recognized. Try 'analyze' or 'clear'.";
+            if (currentCmd.includes('analyze') || currentCmd.includes('scan')) response = `[DEMO CORE]: Showing a simulated visualization for ${activeTwin}. No clinical anomaly assessment is performed.`;
             else if (currentCmd.includes('clear')) { setTerminalLogs(["[SYSTEM]: Memory cleared. Core ready."]); return; }
             setTerminalLogs(prev => [...prev, response]);
         }, 900);
@@ -81,7 +81,7 @@ export default function CivilizationCore() {
         }, 400);
     };
 
-    // QML Math Calculations: Classical O(N) vs Quantum O(sqrt(N))
+    // Illustrative scaling model only; this is not a real quantum hardware benchmark.
     const classicalTimeMs = qmlDataset * 0.05;
     const quantumTimeMs = Math.sqrt(qmlDataset) * 2.5 * (1 + qmlNoise / 100) * (1 + qmlErrorCorrection / 100);
     const qmlAdvantage = classicalTimeMs > quantumTimeMs ? (((classicalTimeMs - quantumTimeMs) / classicalTimeMs) * 100).toFixed(1) : "0.0";
@@ -132,7 +132,7 @@ export default function CivilizationCore() {
                         {appStage === 'GATEWAY' && (
                             <form onSubmit={handleAuth}>
                                 <input type="text" className="sys-input" value={nodeId} onChange={e => setNodeId(e.target.value)} spellCheck="false" />
-                                <input type="password" className="sys-input" value={passkey} onChange={e => setPasskey(e.target.value)} placeholder="Enter clearance hash..." required />
+                                <input type="password" className="sys-input" value={passkey} onChange={e => setPasskey(e.target.value)} placeholder="Enter any demo passphrase..." required />
                                 <button type="submit" className="sys-btn">Initiate Handshake</button>
                             </form>
                         )}
@@ -140,7 +140,7 @@ export default function CivilizationCore() {
                             <div style={{ marginTop: '20px' }}>
                                 <p style={{ color: '#6b7280', fontSize: '0.85rem' }}>Node Identity: {nodeId}</p>
                                 {appStage === 'HANDSHAKE' && <p style={{ color: '#facc15', fontSize: '0.85rem' }}>{">"} Negotiating Quantum Keys...</p>}
-                                {(appStage === 'VERIFYING' || appStage === 'GRANTED') && <p style={{ color: '#4ade80', fontSize: '0.85rem' }}>Verification complete. Level 4 Clearance.</p>}
+                                {(appStage === 'VERIFYING' || appStage === 'GRANTED') && <p style={{ color: '#4ade80', fontSize: '0.85rem' }}>Demo gate complete. No real security clearance was issued.</p>}
                                 {appStage === 'GRANTED' && <button onClick={() => setAppStage('VISUALIZER')} className="sys-btn" style={{ marginTop: '20px', borderColor: '#4ade80', color: '#4ade80' }}>Enter Network</button>}
                             </div>
                         )}
@@ -151,7 +151,7 @@ export default function CivilizationCore() {
                     <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #1f2937', paddingBottom: '10px', marginBottom: '20px' }}>
                             <h1 className="glitch-header" style={{ margin: 0 }}>Global Node Network</h1>
-                            <span style={{ fontSize: '0.75rem', color: '#4ade80' }}>AUTH: {nodeId}</span>
+                            <span style={{ fontSize: '0.75rem', color: '#4ade80' }}>DEMO NODE: {nodeId}</span>
                         </div>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
                             {(Object.keys(NODE_DATA) as Array<keyof typeof NODE_DATA>).map((key) => (
@@ -219,7 +219,7 @@ export default function CivilizationCore() {
                 {appStage === 'QML' && (
                     <div>
                         <h1 className="glitch-header">Quantum Machine Learning Core</h1>
-                        <p style={{ color: '#6b7280', fontSize: '0.85rem' }}>Benchmarking Classical O(N) vs Quantum O(sqrt(N)) Complexity.</p>
+                        <p style={{ color: '#6b7280', fontSize: '0.85rem' }}>Illustrative classical-vs-quantum scaling visualization — not a hardware benchmark.</p>
 
                         <div className="data-panel" style={{ marginTop: '20px' }}>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '30px' }}>
@@ -254,14 +254,14 @@ export default function CivilizationCore() {
 
                                 <div style={{ marginBottom: '20px' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                                        <span style={{ color: '#f3f4f6' }}>Quantum Tensor Network Time</span>
+                                        <span style={{ color: '#f3f4f6' }}>Illustrative quantum-scaling estimate</span>
                                         <span style={{ color: '#4ade80' }}>{quantumTimeMs.toFixed(1)} ms</span>
                                     </div>
                                     <div className="qml-bar-bg"><div style={{ width: `${qBarWidth}%`, height: '100%', background: '#4ade80', transition: 'width 0.3s' }}></div></div>
                                 </div>
 
                                 <div style={{ textAlign: 'center', marginTop: '20px', padding: '15px', border: `1px solid ${Number(qmlAdvantage) > 0 ? '#4ade80' : '#facc15'}`, color: Number(qmlAdvantage) > 0 ? '#4ade80' : '#facc15' }}>
-                                    {Number(qmlAdvantage) > 0 ? `QUANTUM ADVANTAGE ACHIEVED: +${qmlAdvantage}% FASTER` : 'CLASSICAL SYSTEMS CURRENTLY OPTIMAL'}
+                                    {Number(qmlAdvantage) > 0 ? `ILLUSTRATIVE SCALING DIFFERENCE: +${qmlAdvantage}%` : 'CLASSICAL SYSTEMS CURRENTLY OPTIMAL'}
                                 </div>
                             </div>
 
