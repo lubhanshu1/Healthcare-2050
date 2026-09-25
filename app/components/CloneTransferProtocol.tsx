@@ -26,7 +26,7 @@ export function CloneTransferProtocol() {
         setTransferring(true);
         setComplete(false);
         setProgress(0);
-        setLogs(["[SYSTEM]: Establishing quantum entanglement tunnel..."]);
+        setLogs(["[SYSTEM]: Starting local digital-twin simulation..."]);
 
         let current = 0;
         const interval = setInterval(() => {
@@ -35,7 +35,7 @@ export function CloneTransferProtocol() {
             if (current > 30 && current < 40) {
                 setLogs(prev => [...prev, "[DATA]: Syncing biological markers..."]);
             } else if (current > 60 && current < 70) {
-                setLogs(prev => [...prev, layers.neural ? "[DATA]: Uploading synaptic engrams..." : "[DATA]: Compiling physical telemetry..."]);
+                setLogs(prev => [...prev, layers.neural ? "[DATA]: Simulating neural-layer mapping..." : "[DATA]: Compiling local telemetry..."]);
             }
 
             if (current >= 100) {
@@ -43,7 +43,7 @@ export function CloneTransferProtocol() {
                 setProgress(100);
                 setTransferring(false);
                 setComplete(true);
-                setLogs(prev => [...prev, "[SUCCESS]: Host data successfully mapped to Digital Clone."]);
+                setLogs(prev => [...prev, "[SIMULATION]: Digital-twin mapping completed locally. No biological or memory transfer occurred."]);
             } else {
                 setProgress(current);
             }
@@ -52,7 +52,7 @@ export function CloneTransferProtocol() {
 
     return (
         <div className="w-full font-mono text-gray-300 text-xs mt-6">
-            <div className="text-cyan-400 mb-2 uppercase tracking-widest">Digital Clone Data Transfer Protocol</div>
+            <div className="text-cyan-400 mb-2 uppercase tracking-widest">Digital Twin Mapping Simulation</div>
 
             <div className="border border-gray-400">
                 {/* Layer Selection */}
@@ -73,7 +73,7 @@ export function CloneTransferProtocol() {
                         onClick={() => toggleLayer('neural')}
                         className={`flex-1 p-2 cursor-pointer transition-colors ${layers.neural ? 'bg-purple-900/30 text-purple-300' : 'hover:bg-gray-900'}`}
                     >
-                        [{layers.neural ? 'X' : ' '}] SYNAPTIC (MEMORIES)
+                        [{layers.neural ? 'X' : ' '}] NEURAL LAYER (SIMULATED)
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@ export function CloneTransferProtocol() {
                         disabled={transferring || (!layers.genomic && !layers.metabolic && !layers.neural)}
                         className="hover:text-cyan-400 transition-colors uppercase cursor-pointer bg-transparent border-none disabled:opacity-50"
                     >
-                        {transferring ? "[ EXECUTING UPLOAD ]" : "[ INITIATE CLONE SYNC ]"}
+                        {transferring ? "[ RUNNING SIMULATION ]" : "[ START TWIN SIMULATION ]"}
                     </button>
                 </div>
             </div>
