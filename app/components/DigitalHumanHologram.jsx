@@ -91,7 +91,7 @@ const DigitalHumanHologram = () => {
 
                     <div>
                         <label style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#c084fc', marginBottom: '10px', letterSpacing: '1px' }}>
-                            <span>CRISPR-CAS12 MULTIPLEX EDITING</span>
+                            <span>GENOMIC EDITING VISUAL PARAMETER</span>
                             <span style={{ color: '#e9d5ff' }}>{crispr}%</span>
                         </label>
                         <input
@@ -99,7 +99,7 @@ const DigitalHumanHologram = () => {
                             onChange={(e) => setCrispr(+e.target.value)}
                             style={{ width: '100%', height: '4px', appearance: 'none', background: '#2e1065', outline: 'none', borderRadius: '2px', cursor: 'pointer' }}
                         />
-                        <p style={{ fontSize: '0.65rem', color: '#6b21a8', marginTop: '6px' }}>Adjusts precision mapping for deep-tissue genomic anomaly correction.</p>
+                        <p style={{ fontSize: '0.65rem', color: '#6b21a8', marginTop: '6px' }}>Controls a visual simulation parameter; it does not perform or model real gene editing.</p>
                     </div>
 
                     <div style={{ padding: '12px', backgroundColor: 'rgba(88, 28, 135, 0.2)', border: '1px solid #4c1d95', borderRadius: '6px', fontSize: '0.75rem', lineHeight: '1.5', color: '#d8b4fe' }}>
